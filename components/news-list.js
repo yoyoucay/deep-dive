@@ -3,8 +3,7 @@ import Link from "next/link";
 export default function NewsList({ news }) {
   return (
     <ul className="news-list">
-      <ul className="news-list">
-        {news.map((newsItem) => (
+       {news.map((newsItem) => (
           <li key={newsItem.id}>
             <Link href={`/news/${newsItem.slug}`}>
               <img src={`/images/news/${newsItem.image}`} />
@@ -12,7 +11,6 @@ export default function NewsList({ news }) {
             </Link>
           </li>
         ))}
-      </ul>
     </ul>
   );
 }
