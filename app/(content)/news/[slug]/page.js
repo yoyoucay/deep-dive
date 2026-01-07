@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 export default function NewsPageDetails({params}) {
     const newsSlug = params.slug;
     const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === newsSlug);
-    console.log({newsItem, a:'aaa'})
     if (!newsItem) {
         notFound();
     }
