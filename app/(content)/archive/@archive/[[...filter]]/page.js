@@ -8,6 +8,7 @@ import {
   getNewsForYearAndMonth,
 } from "@/lib/news";
 import { Suspense } from "react";
+import { convertMonthNumberToName } from "@/lib/utils";
 
 async function FilteredHeader({ year, month }) {
   const availableYears = await getAvailableNewsYears();
@@ -36,7 +37,7 @@ async function FilteredHeader({ year, month }) {
             const href = year ? `/archive/${year}/${link}` : `/archive/${link}`;
             return (
               <li key={link}>
-                <Link href={href}>{link}</Link>
+                <Link href={href}>{convertMonthNumberToName(link)}</Link>
               </li>
             );
           })}
