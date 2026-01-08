@@ -3,7 +3,6 @@ import { getNewsItem } from '@/lib/news';
 import ModalBackdrop from '@/components/modal-backdrop';
 
 export default async function InterceptedImagePage({ params }) {
-
   const newsItemSlug = params.slug;
   const newsItem = await getNewsItem(newsItemSlug);
 
@@ -14,7 +13,7 @@ export default async function InterceptedImagePage({ params }) {
   return (
     <>
       <ModalBackdrop />
-      <dialog className="modal" open>
+      <dialog className="modal modal-image" open>
         <div className="fullscreen-image">
           <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
         </div>

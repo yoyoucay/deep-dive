@@ -12,17 +12,19 @@ import { convertMonthNumberToName } from "@/lib/utils";
 
 async function FilteredHeader({ year, month }) {
   const availableYears = await getAvailableNewsYears();
+
+  console.log({availableYears})
   let links = availableYears;
+
+  if (year && !month) {
+    links = await getAvailableNewsMonths(year);
+  }
 
   if (
     (year && !availableYears.includes(year)) ||
-    (month && !getAvailableNewsMonths(year).includes(month))
+    (month && !(await getAvailableNewsMonths(year)).includes(month))
   ) {
     throw new Error("Invalid filter value");
-  }
-
-  if (year && !month) {
-    links = getAvailableNewsMonths(year);
   }
 
   if (year && month) {
@@ -35,9 +37,10 @@ async function FilteredHeader({ year, month }) {
         <ul>
           {links.map((link) => {
             const href = year ? `/archive/${year}/${link}` : `/archive/${link}`;
+            const label = year ? convertMonthNumberToName(link) : link;
             return (
               <li key={link}>
-                <Link href={href}>{convertMonthNumberToName(link)}</Link>
+                <Link href={href}>{label}</Link>
               </li>
             );
           })}
