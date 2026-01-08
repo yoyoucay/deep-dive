@@ -38,3 +38,7 @@ next-env.d.ts
 #backend
 /backend/node_modules
 /backend/*.db
+
+.env.local
+.env*.local
+data.db
