@@ -88,18 +88,27 @@ ul {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
   transition: left 0.5s ease;
+  pointer-events: none;
 }
 
-#main-header ul a:hover::before {
+/* Only show shimmer effect on hover for non-active links */
+#main-header ul a:not(.active):hover::before {
   left: 100%;
 }
 
-#main-header ul a:hover,
+#main-header ul a:hover {
+  transform: translateY(-2px);
+}
+
 #main-header ul a.active {
   background: linear-gradient(135deg, #d4af37, #c49d2f);
   color: #0f0f0f;
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+}
+
+#main-header ul a.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.5);
 }
 
 /* Home Page Styles */
